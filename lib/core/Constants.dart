@@ -1,0 +1,31 @@
+const String sharedKey = 'user';
+
+const List<String> places = [
+  'kottappadi',
+  'malappuram',
+  'kunnummal',
+  'pump',
+  'msp',
+  'guest house',
+  'bypass',
+  'koottilangadi',
+  'keeramkundu',
+  'kachinikkad',
+  'makkarapparambu',
+  'school padi',
+  '36',
+  'naranath',
+  'ramapuram',
+  '38',
+  'panangangara',
+  'aripra',
+  'thadathil valavu',
+  'thiroorkkadu',
+  'iti',
+  'oradampalam',
+  'angadippuram',
+  'poly',
+  'jubilie jn',
+  'moosakutty stand',
+  'perinthalmanna'
+];
