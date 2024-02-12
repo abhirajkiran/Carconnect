@@ -1,6 +1,8 @@
+import 'package:carconnect_app/screens/homeScreen.dart';
 import 'package:carconnect_app/screens/loginScreen.dart';
 import 'package:carconnect_app/screens/screenSplash.dart';
 import 'package:carconnect_app/screens/signupScreen.dart';
+import 'package:carconnect_app/screens/useranalyticsScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  ScreenSignUp(),
+      home:  UserAnalyticsScreen(),
     );
   }
 }
