@@ -1,14 +1,25 @@
 import 'package:carconnect_app/core/GContainer.dart';
 import 'package:carconnect_app/core/SnaackBar.dart';
 import 'package:carconnect_app/screens/signupScreen.dart';
+import 'package:carconnect_app/services/firebaseServices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
 
-class ScreenSignIn extends StatelessWidget {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+class ScreenSignIn extends StatefulWidget {
+
   ScreenSignIn({super.key});
+
+  @override
+  State<ScreenSignIn> createState() => _ScreenSignInState();
+}
+
+class _ScreenSignInState extends State<ScreenSignIn> {
+  final FirebaseAuthServices _auth=FirebaseAuthServices();
+  final _emailController = TextEditingController();
+
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -82,55 +93,8 @@ class ScreenSignIn extends StatelessWidget {
 
           ElevatedButton(
             onPressed: () async {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScreenSignUp()));
-
               
-              /* 
-
-              final email = _emailController.text;
-              final password = _passwordController.text;
-              if (email.trim().isEmpty || password.trim().isEmpty) {
-                SnaackBar.showSnaackBar(
-                    context, "E-mail or Password cannot be Empty", snackRed);
-                return;
-              }
-              try {
-                await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: email, password: password);
-              } on FirebaseAuthException catch (e) {
-                if (e.code == 'invalid-email') {
-                  SnaackBar.showSnaackBar(context, "Invalid E-mail", snackRed);
-                  return;
-                } else if (e.code == 'invalid-credential') {
-                  SnaackBar.showSnaackBar(
-                      context, "Invalid User Credentials", snackRed);
-                  return;
-                } else {
-                  SnaackBar.showSnaackBar(
-                      context, "An Unknown Error Occured", snackRed);
-                  return;
-                }
-              } catch (_) {
-                SnaackBar.showSnaackBar(
-                    context, "An Unknown Error Occured", snackRed);
-                return;
-              }
-
-              final sharedPref = await SharedPreferences.getInstance();
-              sharedPref.setBool(sharedKey, true);
-
-              final user = FirebaseAuth.instance.currentUser;
-              if (user != null) {
-                if (!user.emailVerified) {
-                  SnaackBar.showSnaackBar(
-                      context, "Verify Your E-mail", snackGreen);
-                  Navigator.of(context).pushNamed('mail');
-                } else {
-                  SnaackBar.showSnaackBar(
-                      context, "login Succesful", snackGreen);
-                  Navigator.of(context).pushReplacementNamed('home');
-                }
-              } */
+             _signin();
             },
             child: const Text("Sign In"),
           ),
@@ -141,15 +105,31 @@ class ScreenSignIn extends StatelessWidget {
           TextButton(
               onPressed: () {
                 
-
+              Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => ScreenSignUp()),
+  );
                 
               },
               child: const Text(
-                "New to iBus?\nSign Up",
+                "New to carConnect Sign Up",
                 textAlign: TextAlign.center,
               )),
         ],
       )),
     );
+  }
+
+  void _signin()async{
+    
+    String email=_emailController.text;
+     String password=_passwordController.text;
+     User? user=await _auth.signInWithEmailAndPassword(email, password);
+
+     if(user != null){
+      print('user login');
+     }else{
+      print('error'); 
+     }
   }
 }

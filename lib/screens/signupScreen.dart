@@ -1,12 +1,20 @@
 
 import 'package:carconnect_app/core/GContainer.dart';
 import 'package:carconnect_app/screens/loginScreen.dart';
+import 'package:carconnect_app/services/firebaseServices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
-class ScreenSignUp extends StatelessWidget {
+class ScreenSignUp extends StatefulWidget {
   ScreenSignUp({super.key});
 
+  @override
+  State<ScreenSignUp> createState() => _ScreenSignUpState();
+}
+
+class _ScreenSignUpState extends State<ScreenSignUp> {
+  final FirebaseAuthServices _auth=FirebaseAuthServices();
   final _emailController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -26,7 +34,7 @@ class ScreenSignUp extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: TextField(
+            child: TextFormField(
               controller: _emailController,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.mail_outline),
@@ -44,7 +52,7 @@ class ScreenSignUp extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: TextField(
+            child: TextFormField(
               obscureText: true,
               obscuringCharacter: '*',
               controller: _passwordController,
@@ -64,46 +72,9 @@ class ScreenSignUp extends StatelessWidget {
           //elevated Button
 
           ElevatedButton(
-            onPressed: () async {/* 
-              final email = _emailController.text;
-              final password = _passwordController.text;
-              if (email.trim().isEmpty || password.trim().isEmpty) {
-                SnaackBar.showSnaackBar(
-                    context, "E-mail or Password Cannot be Empty", snackRed);
-                return;
-              }
-              try {
-                await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                    email: email, password: password);
-              } on FirebaseAuthException catch (e) {
-                if (e.code == 'weak-password') {
-                  SnaackBar.showSnaackBar(context,
-                      "Password Must be atleast 6 Characters", snackRed);
-                  return;
-                } else if (e.code == 'invalid-email') {
-                  SnaackBar.showSnaackBar(context, "Invalid E-mail", snackRed);
-                  return;
-                } else if (e.code == 'email-already-in-use') {
-                  SnaackBar.showSnaackBar(
-                      context, "E-Mail Already in Use", snackRed);
-                  return;
-                } else {
-                  SnaackBar.showSnaackBar(
-                      context, "An Unknown Error Expected", snackRed);
-                  return;
-                }
-              } catch (_) {
-                SnaackBar.showSnaackBar(
-                    context, "An Unknown Error Expected", snackRed);
-                return;
-              }
-
-              final sharedPref = await SharedPreferences.getInstance();
-              sharedPref.setBool(sharedKey, true);
-
-              SnaackBar.showSnaackBar(
-                  context, "Succesfully Signed Up", snackGreen);
-              Navigator.of(context).pushNamed('greet'); */
+            onPressed: ()  {
+              print(_emailController.text);
+           _signup();
             },
             child: const Text("Sign Up"),
           ),
@@ -123,5 +94,18 @@ class ScreenSignUp extends StatelessWidget {
         ],
       )),
     );
+  }
+
+  void _signup()async{
+    
+    String email=_emailController.text;
+     String password=_passwordController.text;
+     User? user=await _auth.signUpWithEmailAndPassword(email, password);
+
+     if(user != null){
+      print('user created');
+     }else{
+      print('error'); 
+     }
   }
 }

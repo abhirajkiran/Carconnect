@@ -42,9 +42,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
                 scale: 3.5,
               ), */
             ),
-           /*  SizedBox(
-              width: width,
-            ), */
+          
           ],
         ),
       ),
@@ -52,18 +50,4 @@ class _ScreenSplashState extends State<ScreenSplash> {
   }
 }
 
-/* Future<void> checkUser(BuildContext context) async {
-  final user = FirebaseAuth.instance.currentUser;
-  await Future.delayed(const Duration(milliseconds: 2000));
-  final sharedPref = await SharedPreferences.getInstance();
-  final value = sharedPref.getBool(sharedKey);
-  if (value == null || value == false) {
-    Navigator.of(context).pushReplacementNamed('signin');
-  } else if (user != null) {
-    if (!user.emailVerified) {
-      Navigator.of(context).pushReplacementNamed('mail');
-    } else {
-      Navigator.of(context).pushReplacementNamed('home');
-    }
-  }
-} */
+

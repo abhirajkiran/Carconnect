@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "8187568957",
+    "project_id": "car-connect-c6232",
+    "storage_bucket": "car-connect-c6232.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8187568957:android:ee40550eb488c7b4c29b54",
+        "android_client_info": {
+          "package_name": "com.example.carconnect_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8187568957-fle20v9vs6hnmjiv642qf7h1212psuj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAdeR2-cx21aeZmbVFslPtOibEskk9sJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8187568957-fle20v9vs6hnmjiv642qf7h1212psuj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
