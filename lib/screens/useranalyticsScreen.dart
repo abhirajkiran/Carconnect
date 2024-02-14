@@ -116,18 +116,14 @@ class _UserAnalyticsScreenState extends State<UserAnalyticsScreen> {
           itemCount: doc.length,
           itemBuilder:(context,index){
             return ListTile(
+              leading: Icon(Icons.dangerous_outlined),
               title: Text(doc[index]['message']),
+              subtitle: Text(doc[index]['date']),
             );
           } );
         
         
-         // Text('${doc[1].toString()}');
         
-        /* ListView.builder(itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text({}),
-                    );
-                  }); */
         }),
     );
   }

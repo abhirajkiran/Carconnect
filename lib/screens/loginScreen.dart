@@ -1,14 +1,13 @@
 import 'package:carconnect_app/core/GContainer.dart';
 import 'package:carconnect_app/core/SnaackBar.dart';
+import 'package:carconnect_app/screens/homeScreen.dart';
 import 'package:carconnect_app/screens/signupScreen.dart';
 import 'package:carconnect_app/services/firebaseServices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
-
 class ScreenSignIn extends StatefulWidget {
-
   ScreenSignIn({super.key});
 
   @override
@@ -16,10 +15,12 @@ class ScreenSignIn extends StatefulWidget {
 }
 
 class _ScreenSignInState extends State<ScreenSignIn> {
-  final FirebaseAuthServices _auth=FirebaseAuthServices();
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
   final _emailController = TextEditingController();
 
   final _passwordController = TextEditingController();
+
+  final flag=0;
 
   @override
   Widget build(BuildContext context) {
@@ -93,8 +94,9 @@ class _ScreenSignInState extends State<ScreenSignIn> {
 
           ElevatedButton(
             onPressed: () async {
-              
-             _signin();
+        
+              _signin();
+
             },
             child: const Text("Sign In"),
           ),
@@ -104,15 +106,13 @@ class _ScreenSignInState extends State<ScreenSignIn> {
 
           TextButton(
               onPressed: () {
-                
-              Navigator.push(
+                 Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => ScreenSignUp()),
   );
-                
               },
               child: const Text(
-                "New to carConnect Sign Up",
+                "New to carConnect\nSign Up",
                 textAlign: TextAlign.center,
               )),
         ],
@@ -120,16 +120,19 @@ class _ScreenSignInState extends State<ScreenSignIn> {
     );
   }
 
-  void _signin()async{
-    
-    String email=_emailController.text;
-     String password=_passwordController.text;
-     User? user=await _auth.signInWithEmailAndPassword(email, password);
+  void _signin() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
 
-     if(user != null){
+    if (user != null) {
       print('user login');
-     }else{
-      print('error'); 
-     }
+       Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => HomeScreen()),
+  );
+    } else {
+      print('error');
+    }
   }
 }

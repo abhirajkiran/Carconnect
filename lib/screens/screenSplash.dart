@@ -1,53 +1,71 @@
+import 'dart:async';
 
 import 'package:carconnect_app/core/Colors.dart';
+import 'package:carconnect_app/screens/loginScreen.dart';
 import 'package:flutter/material.dart';
 
-
-class ScreenSplash extends StatefulWidget {
-  const ScreenSplash({super.key});
+class SplashScreen extends StatefulWidget{
 
   @override
-  State<ScreenSplash> createState() => _ScreenSplashState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _ScreenSplashState extends State<ScreenSplash> {
-  final String imagePath = 'assets/images/pngwing.com.png';
+class _SplashScreenState extends State<SplashScreen> {
   @override
-/*   void initState() {
-    checkUser(context);
-    super.initState();
-  } */
+  void initState() {
 
+    super.initState();
+    Timer(const Duration(seconds: 3),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                     ScreenSignIn()
+            )
+        )
+    );
+  }
   @override
   Widget build(BuildContext context) {
-    precacheImage(AssetImage(imagePath), context);
-    //final height = MediaQuery.of(context).size.height;
-  //  final width = MediaQuery.of(context).size.width;
-
     return Scaffold(
-      backgroundColor: themeColor,
-      body: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          // mainAxisAlignment: MainAxisAlignment.center,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+             colors: [themeColor,themeColor]
+            //colors: [Color(0xFFFF800B),Color(0xFFCE1010),]
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(right: 20),
-              child: Text('HAI'),
+            Column(
+              children: [
+                Image.asset(
+                  "assets/images/momo.png",
+                  height: 150.0,
+                  width: 150.0,
+                ),
+                SizedBox(height: 50,),
+                const Text("Car Connect App",textAlign:TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  ),
+                ),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 250),
-              /* child: Image.asset(
-                'assets/images/playstore.png',
-                scale: 3.5,
-              ), */
+
+            const CircularProgressIndicator( 
+              valueColor:  AlwaysStoppedAnimation<Color>(Colors.orange),
             ),
-          
           ],
         ),
       ),
     );
   }
 }
-
-

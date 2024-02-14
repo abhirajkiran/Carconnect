@@ -1,10 +1,9 @@
-
 import 'package:carconnect_app/core/GContainer.dart';
+import 'package:carconnect_app/screens/homeScreen.dart';
 import 'package:carconnect_app/screens/loginScreen.dart';
 import 'package:carconnect_app/services/firebaseServices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 
 class ScreenSignUp extends StatefulWidget {
   ScreenSignUp({super.key});
@@ -14,7 +13,7 @@ class ScreenSignUp extends StatefulWidget {
 }
 
 class _ScreenSignUpState extends State<ScreenSignUp> {
-  final FirebaseAuthServices _auth=FirebaseAuthServices();
+  final FirebaseAuthServices _auth = FirebaseAuthServices();
   final _emailController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -72,9 +71,9 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
           //elevated Button
 
           ElevatedButton(
-            onPressed: ()  {
+            onPressed: () {
               print(_emailController.text);
-           _signup();
+              _signup();
             },
             child: const Text("Sign Up"),
           ),
@@ -96,16 +95,16 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
     );
   }
 
-  void _signup()async{
-    
-    String email=_emailController.text;
-     String password=_passwordController.text;
-     User? user=await _auth.signUpWithEmailAndPassword(email, password);
+  void _signup() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
-     if(user != null){
+    if (user!= null) {
       print('user created');
-     }else{
-      print('error'); 
-     }
+      
+    } else {
+      print('error');
+    }
   }
 }
