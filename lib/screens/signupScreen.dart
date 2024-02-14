@@ -102,7 +102,8 @@ class _ScreenSignUpState extends State<ScreenSignUp> {
 
     if (user!= null) {
       print('user created');
-      
+      Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {
       print('error');
     }
