@@ -1,4 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+ 
+
+
+/* class userModel{
+  final String message;
+  final String time;
+
+  userModel({required this.message, required this.time});
+
+} */
+
+
+
+
+
+
+
 
 class FirebaseAuthServices{
   FirebaseAuth _auth=FirebaseAuth.instance;
@@ -26,5 +44,7 @@ Future<User?> signInWithEmailAndPassword(String email,String password)async{
   return null;
   
 }   
+
+
 
 }
